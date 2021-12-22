@@ -1,0 +1,36 @@
+//计数1的个数  作业三
+//f(n)=f(n-1)+n中1的个数
+#include<stdio.h>
+int f(int n) {
+    int add, j;   //j是n本身中i=1的个数，add是和
+    if (n == 1) {
+        return  1;
+    }
+    else {
+        j = 0;
+        int n_1=n;
+        while (n_1 > 0) {
+            if ((n_1 % 10) == 1) j++;
+            n_1 = (n_1-(n_1 % 10)) / 10;
+           // printf("%d",j);
+        }
+        add = f(n - 1) + j;
+    return add;
+ 
+   }
+}
+int main(void) {
+    //这是输入一个数字n，并返回n的1个个数
+   int a;
+    scanf_s("%d", &a);
+    printf("%d\n", f(a));
+    printf("以下输出的值满足f(n)=n\n");
+
+    //这是为了查照f(n)=n
+     for (int i=1; i < 100000; i++) {
+        if (i == f(i)) printf("%d\n", i);
+        else continue;
+    } 
+    return 0;
+}
+*/
