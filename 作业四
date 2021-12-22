@@ -1,0 +1,44 @@
+//作业四
+#include<stdio.h>
+int isPrime(int x);
+int chengfang(int a, int b);
+int main(void) {
+    for (int i = 2; i < 10000; i++) {
+        if (isPrime(i)) {
+            for (int j = 2; j < 10000; j++) {
+                if (isPrime(j)) {
+                    int c = chengfang(i, j);
+                    int d = chengfang(j, i);
+                    if (isPrime(c + d)) printf("p=%d,q=%d\n", i, j);
+                    else continue;
+                }
+                else continue;
+            }
+        }
+        else continue;
+    }
+
+    return 0;
+}
+
+int isPrime(int x) {
+    int j = 2;
+    if (x == 2) return 2;
+    else {
+        for (j; j < x; j++) {
+            if (x % j)  continue;
+            else break;
+        }
+
+        if (j == x) return x;
+        else return 0;
+    }
+}
+
+int chengfang(int a, int b) {
+    int jieguo=a;
+    for (int i = 1; i < b; i++) {
+        jieguo = jieguo * a;
+    }
+    return jieguo;
+}
