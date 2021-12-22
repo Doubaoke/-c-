@@ -1,0 +1,45 @@
+//作业一
+//超级素数
+#include<stdio.h>
+int isPrime(int x);    //判断数字x是否是素数
+int splitNum(int x, int num[]);  //将拆分后的数字都放在数组中
+int main(void) {
+    for (int i = 100; i < 10000; i++) {
+        if (isPrime(i)) {   //本身是素数
+            int split[5]={0}, add = 0, add_1 = 0;
+            splitNum(i, split);   //拆分i,把他放到split中
+            for (int j = 0; j < 5; j++) {
+                add += split[j];
+                add_1 += split[j] * split[j];
+            }
+            if (isPrime(add)!=0 && isPrime(add_1)!=0)
+                printf("%d\n", i);
+        }
+        else continue;
+    }
+    return 0;
+
+}
+
+int isPrime(int x) {
+    int m = 2;
+    for (; m < x; m++) {
+        if (x % m) continue;
+        else break;
+    }
+    if (m == x) {
+       // printf("%d\n", x);
+        return x;
+    }
+    else return 0;
+}
+
+
+int splitNum(int x, int num[]) {
+    int x_1=x;
+    for (int c = 0; x_1 > 0; c++) {
+        num[c] = x_1 % 10;
+        x_1 = (x_1 - num[c]) / 10;
+    }
+    return 1;
+}
