@@ -1,0 +1,30 @@
+//输入一个数字
+//数组，不定长度，判断是否是目标数字，然后j++  
+//然后从第一个元素开始判断，碰到是目标的时候，将后面的数字都往前移一位，别忘了break
+#include<stdio.h>
+int main(void) {
+    int a = 0;     //a是目标数字
+    scanf_s("%d", &a);
+    int b[100];
+    char ch=' ';
+    int c=0,j=0;  //c是数组的下标   j是目标数字的个数
+    while (ch != '\n') {
+        int d;
+        scanf_s("%d%c", &d, &ch);
+        if (d == a) j++;
+        b[c++] = d;
+    }
+
+    for (int i = 0; i < j; i++) {
+        for (int k = 0; k < c; k++) {
+            if (b[k] != a)  continue;
+            else {
+                for (int m = k; k < c; k++)   b[k] = b[k + 1];
+                break;
+            }
+        }
+    }
+
+    for (int i = 0; i < c - j; i++) printf("%d ", b[i]);
+    return 0;
+}
